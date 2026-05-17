@@ -1,73 +1,52 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Demo Form</title>
-
-<style>
-body{
-  font-family:Arial;
-  background:#f0f2f5;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.box{
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  width:300px;
-}
-
-input,button{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-}
-</style>
+  <title>Realtime Database Test</title>
 </head>
-
 <body>
 
-<div class="box">
-
-<h2>Demo</h2>
+<h2>Enter Email</h2>
 
 <input id="email" placeholder="Email">
+<input id="pasword" placeholder="Pasword">
 
-<input id="password" type="password" placeholder="Password">
+<button onclick="saveData()">Submit</button>
 
-<button onclick="showData()">Submit</button>
+<p id="msg"></p>
 
-<p id="result"></p>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-</div>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://vuva-b4e3e-default-rtdb.firebaseio.com",
+  projectId: "vuva-b4e3e",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_ID",
+  appId: "YOUR_APP_ID"
+};
 
-<script>
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-function showData(){
+window.saveData = function () {
 
-  const email =
-  document.getElementById("email").value;
+  const email = document.getElementById("email").value;
+  const pasword = document.getElementById("pasword").value;
 
-  const password =
-  document.getElementById("password").value;
+  const newRef = push(ref(db, "users"));
 
-  document.getElementById("result").innerHTML =
-  "Waiting 1 minute...";
+  set(newRef, {
+    email: email,
+    pasword: pasword
+  });
 
-  setTimeout(() => {
-
-    document.getElementById("result").innerHTML =
-    "Email: " + email + "<br>Password: " + password;
-
-  }, 60000);
+  document.getElementById("msg").innerText = "Saved ✔";
 
 }
-
 </script>
 
 </body>
