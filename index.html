@@ -1,11 +1,74 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Test</title>
+<meta charset="UTF-8">
+<title>Demo Form</title>
+
+<style>
+body{
+  font-family:Arial;
+  background:#f0f2f5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  width:300px;
+}
+
+input,button{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Website Working ✅</h1>
+<div class="box">
+
+<h2>Demo</h2>
+
+<input id="email" placeholder="Email">
+
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="showData()">Submit</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+function showData(){
+
+  const email =
+  document.getElementById("email").value;
+
+  const password =
+  document.getElementById("password").value;
+
+  document.getElementById("result").innerHTML =
+  "Waiting 1 minute...";
+
+  setTimeout(() => {
+
+    document.getElementById("result").innerHTML =
+    "Email: " + email + "<br>Password: " + password;
+
+  }, 60000);
+
+}
+
+</script>
 
 </body>
 </html>
